@@ -31,6 +31,11 @@ public class Product {
 	)
 	private Set<ImageModel> productImages;
 
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Product(Integer productId, String productName, String productDescription, Double productDiscountedPrice,
 			Double productActualPrice) {
 		super();
