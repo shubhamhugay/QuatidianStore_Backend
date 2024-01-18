@@ -20,29 +20,26 @@ import com.quatidianStore.entity.ImageModel;
 import com.quatidianStore.entity.Product;
 import com.quatidianStore.service.ProductService;
 
-
-
 @RestController
 public class ProductController {
 
 	@Autowired
 	private ProductService productService;
 
-	
 	@PreAuthorize("hasRole('Admin')")
 	@PostMapping(value = { "/addNewProduct" }, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 	public Product addNewProduct(@RequestPart("product") Product product,
 			@RequestPart("imageFile") MultipartFile[] file) {
 
 		try {
-			Set<ImageModel> images=uploadImage(file);
-			product .setProductImages(images);
-			return productService.addnewProduct(product);	
+			Set<ImageModel> images = uploadImage(file);
+			product.setProductImages(images);
+			return productService.addnewProduct(product);
 		} catch (Exception e) {
-      System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		return null;
-		
+
 	}
 
 	// to process the image in storing manner
@@ -56,20 +53,30 @@ public class ProductController {
 
 		return imageModels;
 	}
-	
-	@GetMapping({"/getAllProducts"})
-	public java.util.List<Product> getAllProduct()
-	{
-		return productService.getAllProducts(); 
+
+	@GetMapping({ "/getAllProducts" })
+	public java.util.List<Product> getAllProduct() {
+		return productService.getAllProducts();
 	}
 
-	@DeleteMapping({"/deleteProductDetails/{ProductId}"})
-	public void deleteProductDetails(@PathVariable("ProductId") Integer productId )
-	{
+	@PreAuthorize("hasRole('Admin')")
+	@DeleteMapping({ "/deleteProductDetails/{ProductId}" })
+	public void deleteProductDetails(@PathVariable("ProductId") Integer productId) {
 		productService.deleteProductDetails(productId);
-	} 
-	
-	
+	}
+
+	@GetMapping({"/getProductByDetailsId/{productId}"})
+	public Product getProductDetailsById(@PathVariable("productId") Integer productId) {
+	 return productService.getProductDetailById(productId);
+	}
+
+	@PreAuthorize("hasRole('User')")
+	@GetMapping({"/getPRoductDetails/{isSingleProductCheckOut}/{productId}"})
+	public void getProductDetails(@PathVariable(name = "isSingleProductCheckout" )boolean isSingleProductCheckOut,
+			                      @PathVariable(name = "productId") Integer productId) 
+	{
+		
+	}
 	
 	
 }
