@@ -1,6 +1,7 @@
 package com.quatidianStore.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.websocket.server.PathParam;
@@ -71,12 +72,16 @@ public class ProductController {
 	}
 
 	@PreAuthorize("hasRole('User')")
-	@GetMapping({"/getPRoductDetails/{isSingleProductCheckOut}/{productId}"})
-	public void getProductDetails(@PathVariable(name = "isSingleProductCheckout" )boolean isSingleProductCheckOut,
+	@GetMapping({"/getProductDetails/{isSingleProductCheckout}/{productId}"})
+	public List<Product> getProductDetails(@PathVariable(name = "isSingleProductCheckout" )boolean isSingleProductCheckout,
 			                      @PathVariable(name = "productId") Integer productId) 
 	{
+		return productService.getProductDetails(isSingleProductCheckout, productId);
 		
 	}
+	
+	
+	
 	
 	
 }

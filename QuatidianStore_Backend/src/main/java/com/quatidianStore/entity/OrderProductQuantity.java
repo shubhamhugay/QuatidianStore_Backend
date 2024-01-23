@@ -1,9 +1,15 @@
 package com.quatidianStore.entity;
 
+
+
 public class OrderProductQuantity {
 	private Integer productId;
 	private Integer quantity;
 	
+	
+
+
+
 	public Integer getProductId() {
 		return productId;
 	}

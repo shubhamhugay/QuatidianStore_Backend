@@ -17,7 +17,7 @@ public class OrderDetail {
 	private String orderContactNumber;
 	private String orderAlternateContactNumber;
 	private String orderStatus;
-	private Double orderAmountDouble;
+	private Double orderAmount;
 
 	@OneToOne
 	private Product product;
@@ -25,16 +25,16 @@ public class OrderDetail {
 	@OneToOne
 	private User user;
 
-	public OrderDetail(String orderFullName, String orderFullOrder, String orderContactNumber,
-			String orderAlternateContactNumber, String orderStatus, Double orderAmountDouble, Product product,
-			User user) {
-		super();
+	public OrderDetail( String orderFullName, String orderFullOrder, String orderContactNumber,
+			String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user) {
+		
+	
 		this.orderFullName = orderFullName;
 		this.orderFullOrder = orderFullOrder;
 		this.orderContactNumber = orderContactNumber;
 		this.orderAlternateContactNumber = orderAlternateContactNumber;
 		this.orderStatus = orderStatus;
-		this.orderAmountDouble = orderAmountDouble;
+		this.orderAmount = orderAmount;
 		this.product = product;
 		this.user = user;
 	}
@@ -87,12 +87,12 @@ public class OrderDetail {
 		this.orderStatus = orderStatus;
 	}
 
-	public Double getOrderAmountDouble() {
-		return orderAmountDouble;
+	public Double getOrderAmount() {
+		return orderAmount;
 	}
 
-	public void setOrderAmountDouble(Double orderAmountDouble) {
-		this.orderAmountDouble = orderAmountDouble;
+	public void setOrderAmount(Double orderAmount) {
+		this.orderAmount = orderAmount;
 	}
 
 	public Product getProduct() {
@@ -110,6 +110,7 @@ public class OrderDetail {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+
 	
 }

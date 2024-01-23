@@ -15,47 +15,38 @@ import com.quatidianStore.entity.OrderProductQuantity;
 import com.quatidianStore.entity.Product;
 import com.quatidianStore.entity.User;
 
-
 @Service
 public class OrderDetailService {
-	
-	private static final String ORDER_PLACED="Placed";
 
-	
+	private static final String ORDER_PLACED = "Placed";
+
 	@Autowired
 	private OrderDetailDao orderDetailDao;
-	
+
 	@Autowired
-	private ProductDao  productDao;
-	
+	private ProductDao productDao;
+
 	@Autowired
 	private UserDao userDao;
-	
-	
-	
-	
-	public void placeOrder(OrderInput orderInput) 
-	{
- List<OrderProductQuantity> productQuantityList =orderInput.getOrderProductQuantityList();
-	
-	for(OrderProductQuantity o: productQuantityList) {
-		Product product =productDao.findById(o.getProductId()).get();
-	         String	currentUser= JwtRequestFilter.CURRENT_USER;
-	        User user = userDao.findById(currentUser).get();
-		OrderDetail orderDetail =new OrderDetail(
-				orderInput.getFullName(),
-				orderInput.getFullAddress(),
-				orderInput.getContactNumber(),
-				orderInput.getAlternateContactNumber(),
-				ORDER_PLACED,
-				product.getProductActualPrice()*o.getQuantity(),
-				product,
-				user
-				
-				);
-		
-		orderDetailDao.save(orderDetail);
-	}
-	
+
+	public void placeOrder(OrderInput orderInput) {
+		List<OrderProductQuantity> productQuantityList = orderInput.getOrderProductQuantityList();
+		if (productQuantityList == null) {
+			// Handle the case where the list is null, log an error, or throw an exception
+			throw new IllegalArgumentException("OrderProductQuantityList cannot be null");
+		}
+		for (OrderProductQuantity o : productQuantityList) {
+			Product product = productDao.findById(o.getProductId()).get();
+			String currentUser = JwtRequestFilter.CURRENT_USER;
+			User user = userDao.findById(currentUser).get();
+			OrderDetail orderDetail = new OrderDetail(orderInput.getFullName(), orderInput.getFullAddress(),
+					orderInput.getContactNumber(), orderInput.getAlternateContactNumber(), ORDER_PLACED,
+					product.getProductActualPrice() * o.getQuantity(), product, user
+
+			);
+
+			orderDetailDao.save(orderDetail);
+		}
+
 	}
 }

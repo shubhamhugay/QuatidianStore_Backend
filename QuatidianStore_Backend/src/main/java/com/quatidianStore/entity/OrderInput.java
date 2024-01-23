@@ -10,12 +10,23 @@ public class OrderInput {
 	private String alternateContactNumber;
 	
     private List<OrderProductQuantity> orderProductQuantityList;
+    
+    
 
-	public List<OrderProductQuantity> getOrderProductQuantityList() {
-		return orderProductQuantityList;
+	
+
+	public OrderInput() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setOrderProductQuantityList(List<OrderProductQuantity> orderProductQuantityList) {
+	public OrderInput(String fullName, String fullAddress, String contactNumber, String alternateContactNumber,
+			List<OrderProductQuantity> orderProductQuantityList) {
+		super();
+		this.fullName = fullName;
+		this.fullAddress = fullAddress;
+		this.contactNumber = contactNumber;
+		this.alternateContactNumber = alternateContactNumber;
 		this.orderProductQuantityList = orderProductQuantityList;
 	}
 
@@ -51,7 +62,18 @@ public class OrderInput {
 		this.alternateContactNumber = alternateContactNumber;
 	}
 
+	public List<OrderProductQuantity> getOrderProductQuantityList() {
+		return this.orderProductQuantityList;
+	}
+
+	public void setOrderProductQuantityList(List<OrderProductQuantity> orderProductQuantityList) {
+		this.orderProductQuantityList = orderProductQuantityList;
+	}
+
+    
+    
 	
+
 	
 	
 }
