@@ -27,6 +27,11 @@ public class UserController {
     public User registerNewUser(@RequestBody User user) {
         return userService.registerNewUser(user);
     }
+    
+   
+    
+    
+    
 
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
