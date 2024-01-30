@@ -24,6 +24,12 @@ public class OrderDetail {
 
 	@OneToOne
 	private User user;
+	
+
+	public OrderDetail() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public OrderDetail( String orderFullName, String orderFullOrder, String orderContactNumber,
 			String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user) {

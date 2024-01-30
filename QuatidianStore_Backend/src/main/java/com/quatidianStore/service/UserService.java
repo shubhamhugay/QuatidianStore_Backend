@@ -47,10 +47,10 @@ public class UserService {
         userDao.save(adminUser);
 
         User user = new User();
-        user.setUserName("raj123");
-        user.setUserPassword(getEncodedPassword("raj@123"));
-        user.setUserFirstName("raj");
-        user.setUserLastName("sharma");
+        user.setUserName("roger");
+        user.setUserPassword(getEncodedPassword("roger"));
+        user.setUserFirstName("roger");
+        user.setUserLastName("roger");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
         user.setRole(userRoles);
