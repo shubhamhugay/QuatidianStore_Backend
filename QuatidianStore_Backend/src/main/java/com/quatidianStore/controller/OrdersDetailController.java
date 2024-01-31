@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.quatidianStore.entity.OrderDetail;
 import com.quatidianStore.entity.OrderInput;
+import com.quatidianStore.entity.TransactionDetails;
 import com.quatidianStore.service.OrderDetailService;
 
 @RestController
@@ -47,8 +48,20 @@ public class OrdersDetailController {
 	public void marOrderAsDelivered(@PathVariable(name="orderId" )Integer orderId){
 		orderDetailService.markOrderAsDelivered(orderId);
 	} 
+	
+	
+	//transaction controllers
+	@PreAuthorize("hasRole('User')")
+	@GetMapping({"/createTransaction/{amount}"})
+	public TransactionDetails createTransaction(@PathVariable(name="amount") Double amount) 
 	{
-		
+		 return orderDetailService.createTransaction(amount); 
 	}
+	
+	
+	
+	
+	
+	
 	
 }

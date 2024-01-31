@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
+
 @Entity
 public class OrderDetail {
 
@@ -25,6 +27,7 @@ public class OrderDetail {
 	@OneToOne
 	private User user;
 	
+	private String transactionId;
 
 	public OrderDetail() {
 		super();
@@ -32,9 +35,10 @@ public class OrderDetail {
 	}
 
 	public OrderDetail( String orderFullName, String orderFullOrder, String orderContactNumber,
-			String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user) {
+			String orderAlternateContactNumber, String orderStatus, Double orderAmount, Product product, User user,
+			String transactionId) {
+		super();
 		
-	
 		this.orderFullName = orderFullName;
 		this.orderFullOrder = orderFullOrder;
 		this.orderContactNumber = orderContactNumber;
@@ -43,6 +47,7 @@ public class OrderDetail {
 		this.orderAmount = orderAmount;
 		this.product = product;
 		this.user = user;
+		this.transactionId = transactionId;
 	}
 
 	public Integer getOrderId() {
@@ -115,6 +120,14 @@ public class OrderDetail {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 
 
